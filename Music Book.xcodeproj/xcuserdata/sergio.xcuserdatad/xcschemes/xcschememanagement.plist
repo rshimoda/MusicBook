@@ -7,7 +7,25 @@
 		<key>Music Book.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>7</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>4983700E208F7ABE00D5F10D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>49837022208F7AC000D5F10D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4983702D208F7AC000D5F10D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
