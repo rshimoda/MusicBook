@@ -39,32 +39,24 @@ class Tuner: NSObject {
     /* Private instance variables. */
     fileprivate var timer:      Timer?
     fileprivate let microphone: AKMicrophone
-//    fileprivate let analyzer:   AKAudioAnalyzer
     fileprivate let filter:     AKHighPassFilter
     fileprivate let tracker:    AKFrequencyTracker
     fileprivate let silence:    AKBooster
 
     override init() {
-        /* Start application-wide microphone recording. */
-//        AKManager.shared().enableAudioInput()
-
         /* Add the built-in microphone. */
         microphone = AKMicrophone()
-//        AKOrchestra.add(microphone)
 
-        /* Add an analyzer and store it in an instance variable. */
-//        analyzer = AKAudioAnalyzer(input: microphone.output)
-//        AKOrchestra.add(analyzer)
+        /**
+         * Add a filter, tracker, silence and store it in an instance variable.
+         * NOTE: filter insatnce is required to prevent app crash
+         **/
         filter  = AKHighPassFilter(microphone, cutoffFrequency: 200, resonance: 0)
         tracker = AKFrequencyTracker(filter)
         silence = AKBooster(tracker, gain: 0)
     }
 
     func startMonitoring() {
-        /* Start the microphone and analyzer. */
-//        analyzer.play()
-//        microphone.play()
-        
         do {
             AKSettings.audioInputEnabled = true
             AudioKit.output = silence
@@ -81,8 +73,6 @@ class Tuner: NSObject {
     }
 
     func stopMonitoring() {
-//        analyzer.stop()
-//        microphone.stop()
         do {
             try AudioKit.stop()
         } catch {
@@ -93,8 +83,8 @@ class Tuner: NSObject {
 
     @objc func tick() {
         /* Read frequency and amplitude from the analyzer. */
-        let frequency = tracker.frequency // Double(analyzer.trackedFrequency.floatValue)
-        let amplitude = tracker.amplitude // Double(analyzer.trackedAmplitude.floatValue)
+        let frequency = tracker.frequency
+        let amplitude = tracker.amplitude
 
         /* Find nearest pitch. */
         let pitch = Pitch.nearest(frequency)
