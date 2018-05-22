@@ -9,12 +9,39 @@
 /* Begin PBXBuildFile section */
 		492329EE2097414E00B66E3D /* Me.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492329ED2097414D00B66E3D /* Me.swift */; };
 		492329F0209768A000B66E3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 492329EF209768A000B66E3D /* Assets.xcassets */; };
+		492924EA209A6652006C58DD /* Tuner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492924E7209A6652006C58DD /* Tuner.swift */; };
+		492924EB209A6652006C58DD /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492924E8209A6652006C58DD /* Note.swift */; };
+		492924EC209A6652006C58DD /* Pitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492924E9209A6652006C58DD /* Pitch.swift */; };
+		492924EF209B0AED006C58DD /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492924EE209B0AED006C58DD /* LibraryViewController.swift */; };
 		49837013208F7ABE00D5F10D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49837012208F7ABE00D5F10D /* AppDelegate.swift */; };
 		49837015208F7ABE00D5F10D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49837014208F7ABE00D5F10D /* ViewController.swift */; };
 		49837018208F7ABE00D5F10D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49837016208F7ABE00D5F10D /* Main.storyboard */; };
 		4983701D208F7AC000D5F10D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4983701B208F7AC000D5F10D /* LaunchScreen.storyboard */; };
 		49837028208F7AC000D5F10D /* Music_BookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49837027208F7AC000D5F10D /* Music_BookTests.swift */; };
 		49837033208F7AC000D5F10D /* Music_BookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49837032208F7AC000D5F10D /* Music_BookUITests.swift */; };
+		49961BC720B374FF00368F1B /* SplashScreenUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 49961BC520B374FE00368F1B /* SplashScreenUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		49961BCA20B374FF00368F1B /* SplashScreenUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49961BC320B374FE00368F1B /* SplashScreenUI.framework */; };
+		49961BCB20B374FF00368F1B /* SplashScreenUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49961BC320B374FE00368F1B /* SplashScreenUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49961BD920B3752100368F1B /* Commons.h in Headers */ = {isa = PBXBuildFile; fileRef = 49961BD720B3752100368F1B /* Commons.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		49961BDC20B3752100368F1B /* Commons.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49961BD520B3752100368F1B /* Commons.framework */; };
+		49961BDD20B3752100368F1B /* Commons.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49961BD520B3752100368F1B /* Commons.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49961BE120B3754400368F1B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49961BA920B374C900368F1B /* Constants.swift */; };
+		49961BE220B3754400368F1B /* TileGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49961BAA20B374C900368F1B /* TileGridView.swift */; };
+		49961BE320B3754400368F1B /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49961BAB20B374C900368F1B /* TileView.swift */; };
+		49961BE420B3754400368F1B /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49961BAC20B374C900368F1B /* SplashViewController.swift */; };
+		49961BE520B3754400368F1B /* AnimatedULogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49961BAD20B374C900368F1B /* AnimatedULogoView.swift */; };
+		49961BE620B3755700368F1B /* Chimes.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49961BAF20B374C900368F1B /* Chimes.xcassets */; };
+		49961BE920B3758000368F1B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49961BB920B374D300368F1B /* Utils.swift */; };
+		49961BEB20B3760F00368F1B /* RootContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49961BEA20B3760F00368F1B /* RootContainerViewController.swift */; };
+		49961BED20B3765000368F1B /* MenuNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49961BEC20B3765000368F1B /* MenuNavigationViewController.swift */; };
+		49961BEE20B3774500368F1B /* SplashScreenUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 49961BAE20B374C900368F1B /* SplashScreenUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		49961BEF20B3776000368F1B /* Commons.h in Headers */ = {isa = PBXBuildFile; fileRef = 49961BBA20B374D300368F1B /* Commons.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		49961BF220B42F3100368F1B /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492924F0209B0B5C006C58DD /* DataStorage.swift */; };
+		49961BF320B42F3300368F1B /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49961BA620B3540800368F1B /* State.swift */; };
+		49F59C1F209B29D900D35875 /* RecordingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F59C1E209B29D900D35875 /* RecordingTableViewCell.swift */; };
+		49F823E22097DCA500584985 /* TunerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F823E12097DCA500584985 /* TunerViewController.swift */; };
+		49F823E6209A1A1800584985 /* MKGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F823E4209A1A1800584985 /* MKGradientView.swift */; };
+		49F823E7209A1A1800584985 /* MKGradientGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F823E5209A1A1800584985 /* MKGradientGenerator.swift */; };
 		85A8813C147D4EC919BCA2E0 /* Pods_Music_BookUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 878CA445032D1896DE904A29 /* Pods_Music_BookUITests.framework */; };
 		961F51716A44AF4808F4843C /* Pods_Music_Book.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B9126F3156D5D019C87C582 /* Pods_Music_Book.framework */; };
 		E177D88E44381F765D5037DF /* Pods_Music_BookTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BAFF9FAC00954FFEF37E365 /* Pods_Music_BookTests.framework */; };
@@ -35,7 +62,43 @@
 			remoteGlobalIDString = 4983700E208F7ABE00D5F10D;
 			remoteInfo = "Music Book";
 		};
+		49961BC820B374FF00368F1B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 49837007208F7ABE00D5F10D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 49961BC220B374FE00368F1B;
+			remoteInfo = SplashScreenUI;
+		};
+		49961BDA20B3752100368F1B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 49837007208F7ABE00D5F10D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 49961BD420B3752100368F1B;
+			remoteInfo = Commons;
+		};
+		49961BE720B3756400368F1B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 49837007208F7ABE00D5F10D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 49961BD420B3752100368F1B;
+			remoteInfo = Commons;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		49961BCF20B374FF00368F1B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				49961BCB20B374FF00368F1B /* SplashScreenUI.framework in Embed Frameworks */,
+				49961BDD20B3752100368F1B /* Commons.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2BAFF9FAC00954FFEF37E365 /* Pods_Music_BookTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Music_BookTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +107,11 @@
 		44A9268958B5267170557EC1 /* Pods-Music BookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music BookTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Music BookTests/Pods-Music BookTests.debug.xcconfig"; sourceTree = "<group>"; };
 		492329ED2097414D00B66E3D /* Me.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Me.swift; sourceTree = "<group>"; };
 		492329EF209768A000B66E3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		492924E7209A6652006C58DD /* Tuner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tuner.swift; sourceTree = "<group>"; };
+		492924E8209A6652006C58DD /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		492924E9209A6652006C58DD /* Pitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pitch.swift; sourceTree = "<group>"; };
+		492924EE209B0AED006C58DD /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
+		492924F0209B0B5C006C58DD /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
 		4983700F208F7ABE00D5F10D /* Music Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Music Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49837012208F7ABE00D5F10D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49837014208F7ABE00D5F10D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +124,31 @@
 		4983702E208F7AC000D5F10D /* Music BookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Music BookUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49837032208F7AC000D5F10D /* Music_BookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music_BookUITests.swift; sourceTree = "<group>"; };
 		49837034208F7AC000D5F10D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49961BA620B3540800368F1B /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		49961BA920B374C900368F1B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		49961BAA20B374C900368F1B /* TileGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileGridView.swift; sourceTree = "<group>"; };
+		49961BAB20B374C900368F1B /* TileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
+		49961BAC20B374C900368F1B /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		49961BAD20B374C900368F1B /* AnimatedULogoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedULogoView.swift; sourceTree = "<group>"; };
+		49961BAE20B374C900368F1B /* SplashScreenUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreenUI.h; sourceTree = "<group>"; };
+		49961BAF20B374C900368F1B /* Chimes.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Chimes.xcassets; sourceTree = "<group>"; };
+		49961BB020B374C900368F1B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49961BB920B374D300368F1B /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		49961BBA20B374D300368F1B /* Commons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Commons.h; sourceTree = "<group>"; };
+		49961BBB20B374D300368F1B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49961BC320B374FE00368F1B /* SplashScreenUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SplashScreenUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49961BC520B374FE00368F1B /* SplashScreenUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SplashScreenUI.h; sourceTree = "<group>"; };
+		49961BC620B374FF00368F1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49961BD520B3752100368F1B /* Commons.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Commons.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49961BD720B3752100368F1B /* Commons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Commons.h; sourceTree = "<group>"; };
+		49961BD820B3752100368F1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49961BEA20B3760F00368F1B /* RootContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootContainerViewController.swift; sourceTree = "<group>"; };
+		49961BEC20B3765000368F1B /* MenuNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuNavigationViewController.swift; sourceTree = "<group>"; };
+		49F59C1B209B1B9C00D35875 /* Music Book-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Music Book-Bridging-Header.h"; sourceTree = "<group>"; };
+		49F59C1E209B29D900D35875 /* RecordingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingTableViewCell.swift; sourceTree = "<group>"; };
+		49F823E12097DCA500584985 /* TunerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunerViewController.swift; sourceTree = "<group>"; };
+		49F823E4209A1A1800584985 /* MKGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKGradientView.swift; sourceTree = "<group>"; };
+		49F823E5209A1A1800584985 /* MKGradientGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKGradientGenerator.swift; sourceTree = "<group>"; };
 		855F03EF3BF747C4332030C4 /* Pods-Music BookUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music BookUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Music BookUITests/Pods-Music BookUITests.release.xcconfig"; sourceTree = "<group>"; };
 		878CA445032D1896DE904A29 /* Pods_Music_BookUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Music_BookUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0057BD61308BDD2BD93C8A9 /* Pods-Music BookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music BookTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Music BookTests/Pods-Music BookTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -68,6 +161,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49961BCA20B374FF00368F1B /* SplashScreenUI.framework in Frameworks */,
+				49961BDC20B3752100368F1B /* Commons.framework in Frameworks */,
 				961F51716A44AF4808F4843C /* Pods_Music_Book.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -88,15 +183,41 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		49961BBF20B374FE00368F1B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49961BD120B3752100368F1B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		492924ED209A665B006C58DD /* Tuner */ = {
+			isa = PBXGroup;
+			children = (
+				492924E7209A6652006C58DD /* Tuner.swift */,
+				492924E8209A6652006C58DD /* Note.swift */,
+				492924E9209A6652006C58DD /* Pitch.swift */,
+			);
+			path = Tuner;
+			sourceTree = "<group>";
+		};
 		49837006208F7ABE00D5F10D = {
 			isa = PBXGroup;
 			children = (
 				49837011208F7ABE00D5F10D /* Music Book */,
 				49837026208F7AC000D5F10D /* Music BookTests */,
 				49837031208F7AC000D5F10D /* Music BookUITests */,
+				49961BC420B374FE00368F1B /* SplashScreenUI */,
+				49961BD620B3752100368F1B /* Commons */,
 				49837010208F7ABE00D5F10D /* Products */,
 				71B853D8D26D24F9491C4162 /* Pods */,
 				6E29C1F2CCB2F40C955FC2C4 /* Frameworks */,
@@ -109,6 +230,8 @@
 				4983700F208F7ABE00D5F10D /* Music Book.app */,
 				49837023208F7AC000D5F10D /* Music BookTests.xctest */,
 				4983702E208F7AC000D5F10D /* Music BookUITests.xctest */,
+				49961BC320B374FE00368F1B /* SplashScreenUI.framework */,
+				49961BD520B3752100368F1B /* Commons.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -116,9 +239,20 @@
 		49837011208F7ABE00D5F10D /* Music Book */ = {
 			isa = PBXGroup;
 			children = (
-				4983701E208F7AC000D5F10D /* Info.plist */,
-				49837014208F7ABE00D5F10D /* ViewController.swift */,
 				49837016208F7ABE00D5F10D /* Main.storyboard */,
+				49961BEA20B3760F00368F1B /* RootContainerViewController.swift */,
+				49961BEC20B3765000368F1B /* MenuNavigationViewController.swift */,
+				49837014208F7ABE00D5F10D /* ViewController.swift */,
+				49F823E12097DCA500584985 /* TunerViewController.swift */,
+				492924EE209B0AED006C58DD /* LibraryViewController.swift */,
+				49F59C1E209B29D900D35875 /* RecordingTableViewCell.swift */,
+				492924F0209B0B5C006C58DD /* DataStorage.swift */,
+				49961BA620B3540800368F1B /* State.swift */,
+				492924ED209A665B006C58DD /* Tuner */,
+				49F823E8209A1A1E00584985 /* MKGradientView */,
+				49961BA820B374C900368F1B /* SplashScreenUI */,
+				49961BB820B374D300368F1B /* Commons */,
+				49F823E3209A1A0800584985 /* Me */,
 				49837040208F7E0700D5F10D /* Supporting Files */,
 			);
 			path = "Music Book";
@@ -145,12 +279,73 @@
 		49837040208F7E0700D5F10D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4983701E208F7AC000D5F10D /* Info.plist */,
 				492329EF209768A000B66E3D /* Assets.xcassets */,
 				49837012208F7ABE00D5F10D /* AppDelegate.swift */,
-				492329ED2097414D00B66E3D /* Me.swift */,
 				4983701B208F7AC000D5F10D /* LaunchScreen.storyboard */,
+				49F59C1B209B1B9C00D35875 /* Music Book-Bridging-Header.h */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		49961BA820B374C900368F1B /* SplashScreenUI */ = {
+			isa = PBXGroup;
+			children = (
+				49961BA920B374C900368F1B /* Constants.swift */,
+				49961BAA20B374C900368F1B /* TileGridView.swift */,
+				49961BAB20B374C900368F1B /* TileView.swift */,
+				49961BAC20B374C900368F1B /* SplashViewController.swift */,
+				49961BAD20B374C900368F1B /* AnimatedULogoView.swift */,
+				49961BAE20B374C900368F1B /* SplashScreenUI.h */,
+				49961BAF20B374C900368F1B /* Chimes.xcassets */,
+				49961BB020B374C900368F1B /* Info.plist */,
+			);
+			path = SplashScreenUI;
+			sourceTree = "<group>";
+		};
+		49961BB820B374D300368F1B /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				49961BB920B374D300368F1B /* Utils.swift */,
+				49961BBA20B374D300368F1B /* Commons.h */,
+				49961BBB20B374D300368F1B /* Info.plist */,
+			);
+			path = Commons;
+			sourceTree = "<group>";
+		};
+		49961BC420B374FE00368F1B /* SplashScreenUI */ = {
+			isa = PBXGroup;
+			children = (
+				49961BC520B374FE00368F1B /* SplashScreenUI.h */,
+				49961BC620B374FF00368F1B /* Info.plist */,
+			);
+			path = SplashScreenUI;
+			sourceTree = "<group>";
+		};
+		49961BD620B3752100368F1B /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				49961BD720B3752100368F1B /* Commons.h */,
+				49961BD820B3752100368F1B /* Info.plist */,
+			);
+			path = Commons;
+			sourceTree = "<group>";
+		};
+		49F823E3209A1A0800584985 /* Me */ = {
+			isa = PBXGroup;
+			children = (
+				492329ED2097414D00B66E3D /* Me.swift */,
+			);
+			path = Me;
+			sourceTree = "<group>";
+		};
+		49F823E8209A1A1E00584985 /* MKGradientView */ = {
+			isa = PBXGroup;
+			children = (
+				49F823E5209A1A1800584985 /* MKGradientGenerator.swift */,
+				49F823E4209A1A1800584985 /* MKGradientView.swift */,
+			);
+			path = MKGradientView;
 			sourceTree = "<group>";
 		};
 		6E29C1F2CCB2F40C955FC2C4 /* Frameworks */ = {
@@ -178,6 +373,27 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		49961BC020B374FE00368F1B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49961BC720B374FF00368F1B /* SplashScreenUI.h in Headers */,
+				49961BEE20B3774500368F1B /* SplashScreenUI.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49961BD220B3752100368F1B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49961BD920B3752100368F1B /* Commons.h in Headers */,
+				49961BEF20B3776000368F1B /* Commons.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		4983700E208F7ABE00D5F10D /* Music Book */ = {
 			isa = PBXNativeTarget;
@@ -188,10 +404,13 @@
 				4983700C208F7ABE00D5F10D /* Frameworks */,
 				4983700D208F7ABE00D5F10D /* Resources */,
 				EFA51EF9555D081FE8EDA945 /* [CP] Embed Pods Frameworks */,
+				49961BCF20B374FF00368F1B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				49961BC920B374FF00368F1B /* PBXTargetDependency */,
+				49961BDB20B3752100368F1B /* PBXTargetDependency */,
 			);
 			name = "Music Book";
 			productName = "Music Book";
@@ -236,6 +455,43 @@
 			productReference = 4983702E208F7AC000D5F10D /* Music BookUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		49961BC220B374FE00368F1B /* SplashScreenUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49961BCC20B374FF00368F1B /* Build configuration list for PBXNativeTarget "SplashScreenUI" */;
+			buildPhases = (
+				49961BBE20B374FE00368F1B /* Sources */,
+				49961BBF20B374FE00368F1B /* Frameworks */,
+				49961BC020B374FE00368F1B /* Headers */,
+				49961BC120B374FE00368F1B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				49961BE820B3756400368F1B /* PBXTargetDependency */,
+			);
+			name = SplashScreenUI;
+			productName = SplashScreenUI;
+			productReference = 49961BC320B374FE00368F1B /* SplashScreenUI.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		49961BD420B3752100368F1B /* Commons */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49961BDE20B3752100368F1B /* Build configuration list for PBXNativeTarget "Commons" */;
+			buildPhases = (
+				49961BD020B3752100368F1B /* Sources */,
+				49961BD120B3752100368F1B /* Frameworks */,
+				49961BD220B3752100368F1B /* Headers */,
+				49961BD320B3752100368F1B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Commons;
+			productName = Commons;
+			productReference = 49961BD520B3752100368F1B /* Commons.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -248,6 +504,7 @@
 				TargetAttributes = {
 					4983700E208F7ABE00D5F10D = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 0930;
 					};
 					49837022208F7AC000D5F10D = {
 						CreatedOnToolsVersion = 9.3;
@@ -256,6 +513,12 @@
 					4983702D208F7AC000D5F10D = {
 						CreatedOnToolsVersion = 9.3;
 						TestTargetID = 4983700E208F7ABE00D5F10D;
+					};
+					49961BC220B374FE00368F1B = {
+						CreatedOnToolsVersion = 9.3.1;
+					};
+					49961BD420B3752100368F1B = {
+						CreatedOnToolsVersion = 9.3.1;
 					};
 				};
 			};
@@ -275,6 +538,8 @@
 				4983700E208F7ABE00D5F10D /* Music Book */,
 				49837022208F7AC000D5F10D /* Music BookTests */,
 				4983702D208F7AC000D5F10D /* Music BookUITests */,
+				49961BC220B374FE00368F1B /* SplashScreenUI */,
+				49961BD420B3752100368F1B /* Commons */,
 			);
 		};
 /* End PBXProject section */
@@ -298,6 +563,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		4983702C208F7AC000D5F10D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49961BC120B374FE00368F1B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49961BE620B3755700368F1B /* Chimes.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49961BD320B3752100368F1B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -369,23 +649,20 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Music Book/Pods-Music Book-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
-				"${BUILT_PRODUCTS_DIR}/EZAudio/EZAudio.framework",
+				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
 				"${BUILT_PRODUCTS_DIR}/Sugar/Sugar.framework",
-				"${BUILT_PRODUCTS_DIR}/TPCircularBuffer/TPCircularBuffer.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EZAudio.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sugar.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPCircularBuffer.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Music Book/Pods-Music Book-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -395,8 +672,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				49837015208F7ABE00D5F10D /* ViewController.swift in Sources */,
+				492924EF209B0AED006C58DD /* LibraryViewController.swift in Sources */,
+				49F823E22097DCA500584985 /* TunerViewController.swift in Sources */,
+				49961BED20B3765000368F1B /* MenuNavigationViewController.swift in Sources */,
+				49F823E6209A1A1800584985 /* MKGradientView.swift in Sources */,
+				49961BF220B42F3100368F1B /* DataStorage.swift in Sources */,
 				49837013208F7ABE00D5F10D /* AppDelegate.swift in Sources */,
+				492924EC209A6652006C58DD /* Pitch.swift in Sources */,
+				49961BF320B42F3300368F1B /* State.swift in Sources */,
+				49961BEB20B3760F00368F1B /* RootContainerViewController.swift in Sources */,
+				49F59C1F209B29D900D35875 /* RecordingTableViewCell.swift in Sources */,
+				492924EA209A6652006C58DD /* Tuner.swift in Sources */,
+				492924EB209A6652006C58DD /* Note.swift in Sources */,
 				492329EE2097414E00B66E3D /* Me.swift in Sources */,
+				49F823E7209A1A1800584985 /* MKGradientGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +705,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		49961BBE20B374FE00368F1B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49961BE120B3754400368F1B /* Constants.swift in Sources */,
+				49961BE220B3754400368F1B /* TileGridView.swift in Sources */,
+				49961BE320B3754400368F1B /* TileView.swift in Sources */,
+				49961BE420B3754400368F1B /* SplashViewController.swift in Sources */,
+				49961BE520B3754400368F1B /* AnimatedULogoView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49961BD020B3752100368F1B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49961BE920B3758000368F1B /* Utils.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -428,6 +737,21 @@
 			isa = PBXTargetDependency;
 			target = 4983700E208F7ABE00D5F10D /* Music Book */;
 			targetProxy = 4983702F208F7AC000D5F10D /* PBXContainerItemProxy */;
+		};
+		49961BC920B374FF00368F1B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 49961BC220B374FE00368F1B /* SplashScreenUI */;
+			targetProxy = 49961BC820B374FF00368F1B /* PBXContainerItemProxy */;
+		};
+		49961BDB20B3752100368F1B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 49961BD420B3752100368F1B /* Commons */;
+			targetProxy = 49961BDA20B3752100368F1B /* PBXContainerItemProxy */;
+		};
+		49961BE820B3756400368F1B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 49961BD420B3752100368F1B /* Commons */;
+			targetProxy = 49961BE720B3756400368F1B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -569,14 +893,22 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 37AE99B7797761E8436938B9 /* Pods-Music Book.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 869HSEDS8L;
-				INFOPLIST_FILE = "Music Book/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				INFOPLIST_FILE = "$(SRCROOT)/Music Book/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.onpu.Music-Book";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Music Book/Supporting Files/Music Book-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -586,14 +918,21 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EA8136AC0FB9A371015EE4E2 /* Pods-Music Book.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 869HSEDS8L;
-				INFOPLIST_FILE = "Music Book/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				INFOPLIST_FILE = "$(SRCROOT)/Music Book/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.onpu.Music-Book";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Music Book/Supporting Files/Music Book-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -608,7 +947,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 869HSEDS8L;
 				INFOPLIST_FILE = "Music BookTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.onpu.Music-BookTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -626,7 +969,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 869HSEDS8L;
 				INFOPLIST_FILE = "Music BookTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.onpu.Music-BookTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -643,7 +990,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 869HSEDS8L;
 				INFOPLIST_FILE = "Music BookUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.onpu.Music-BookUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -660,12 +1011,128 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 869HSEDS8L;
 				INFOPLIST_FILE = "Music BookUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.onpu.Music-BookUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "Music Book";
+			};
+			name = Release;
+		};
+		49961BCD20B374FF00368F1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 869HSEDS8L;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SplashScreenUI/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = edu.onpu.SplashScreenUI;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		49961BCE20B374FF00368F1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 869HSEDS8L;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SplashScreenUI/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = edu.onpu.SplashScreenUI;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		49961BDF20B3752100368F1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 869HSEDS8L;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Commons/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = edu.onpu.Commons;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		49961BE020B3752100368F1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 869HSEDS8L;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Commons/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = edu.onpu.Commons;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -679,7 +1146,7 @@
 				49837036208F7AC000D5F10D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		49837037208F7AC000D5F10D /* Build configuration list for PBXNativeTarget "Music Book" */ = {
 			isa = XCConfigurationList;
@@ -688,7 +1155,7 @@
 				49837039208F7AC000D5F10D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		4983703A208F7AC000D5F10D /* Build configuration list for PBXNativeTarget "Music BookTests" */ = {
 			isa = XCConfigurationList;
@@ -697,7 +1164,7 @@
 				4983703C208F7AC000D5F10D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		4983703D208F7AC000D5F10D /* Build configuration list for PBXNativeTarget "Music BookUITests" */ = {
 			isa = XCConfigurationList;
@@ -706,7 +1173,25 @@
 				4983703F208F7AC000D5F10D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
+		};
+		49961BCC20B374FF00368F1B /* Build configuration list for PBXNativeTarget "SplashScreenUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49961BCD20B374FF00368F1B /* Debug */,
+				49961BCE20B374FF00368F1B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		49961BDE20B3752100368F1B /* Build configuration list for PBXNativeTarget "Commons" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49961BDF20B3752100368F1B /* Debug */,
+				49961BE020B3752100368F1B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
