@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import AVFoundation
+import AudioKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,22 +16,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        /* Microphone permission request */
-        let session = AVAudioSession.sharedInstance()
         do {
-            try session.setCategory(AVAudioSessionCategoryPlayAndRecord, with: AVAudioSessionCategoryOptions.defaultToSpeaker)
-            try session.setActive(true)
-            
-            session.requestRecordPermission() { (granted: Bool) -> Void in
-                if granted {
-                    DataStorage.applicationHasMicrophoneAccess = true
-                } else {
-                    DataStorage.applicationHasMicrophoneAccess = false
-                }
-            }
-        } catch let error {
-            debugPrint(error.localizedDescription)
+            try AKSettings.setSession(category: .playAndRecord, with: .allowBluetoothA2DP)
+        } catch {
+            AKLog("ERROR: Couldn't set session category (\(error.localizedDescription))")
         }
+        
+        /* Microphone permission request */
+//        let session = AVAudioSession.sharedInstance()
+//        do {
+//            try session.setCategory(AVAudioSessionCategoryPlayAndRecord, with: AVAudioSessionCategoryOptions.defaultToSpeaker)
+//            try session.setActive(true)
+//
+//            session.requestRecordPermission() { (granted: Bool) -> Void in
+//                if granted {
+//                    DataStorage.applicationHasMicrophoneAccess = true
+//                } else {
+//                    DataStorage.applicationHasMicrophoneAccess = false
+//                }
+//            }
+//        } catch let error {
+//            debugPrint(error.localizedDescription)
+//        }
         
         /* Splash screen animation */
 //        self.window = UIWindow(frame: UIScreen.main.bounds)

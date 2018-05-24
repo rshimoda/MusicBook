@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Tim van Elsloo
+ * Copyright (c) 2018 Sergi Popov
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,54 +36,52 @@ protocol TunerDelegate {
 class Tuner: NSObject {
     var delegate: TunerDelegate?
 
-    /* Private instance variables. */
-    fileprivate var timer:      Timer?
-    fileprivate let microphone: AKMicrophone
-    fileprivate let filter:     AKHighPassFilter
-    fileprivate let tracker:    AKFrequencyTracker
-    fileprivate let silence:    AKBooster
+    /* AudioKit instance variables. */
+    fileprivate var timer:          Timer?
+    fileprivate let microphone:     AKMicrophone
+    fileprivate let booster:        AKBooster
+    fileprivate let tracker:        AKFrequencyTracker
+    fileprivate let silence:        AKBooster
+    
+    /* Private instanse variables */
+    fileprivate let threshold: Double
+    fileprivate let smoothing: Double
+    fileprivate var smoothingBuffer: [Double] = []
+    fileprivate let smoothingBufferCount = 30
 
-    override init() {
+    public init(threshold: Float = 0.0, smoothing: Float = 0.25) {
+        self.threshold = Double(min(abs(threshold), 1.0))
+        self.smoothing = Double(min(abs(smoothing), 1.0))
+        
         /* Add the built-in microphone. */
-        microphone = AKMicrophone()
+        microphone = AudioManager.shared.microphone
 
-        /**
-         * Add a filter, tracker, silence and store it in an instance variable.
-         * NOTE: filter insatnce is required to prevent app crash
-         **/
-        filter  = AKHighPassFilter(microphone, cutoffFrequency: 200, resonance: 0)
-        tracker = AKFrequencyTracker(filter)
+        /* Add a filter, tracker, silence and store it in an instance variable. */
+        booster = AKBooster(microphone, gain: 5)
+        tracker = AKFrequencyTracker(booster)
         silence = AKBooster(tracker, gain: 0)
+        AudioKit.output = silence
     }
 
     func startMonitoring() {
-        do {
-            AKSettings.audioInputEnabled = true
-            AudioKit.output = silence
-            try AudioKit.start()
-        } catch {
-            debugPrint("ERROR: Tuner.startMonitoring(): \(error.localizedDescription)")
-        }
-
         /* Initialize and schedule a new run loop timer. */
-        timer = Timer.scheduledTimer(timeInterval: 0.3, target: self,
+        timer = Timer.scheduledTimer(timeInterval: 0.05, target: self,
                                                        selector: #selector(Tuner.tick),
                                                        userInfo: nil,
                                                        repeats: true)
     }
 
     func stopMonitoring() {
-        do {
-            try AudioKit.stop()
-        } catch {
-            debugPrint("ERROR: Tuner.stopMonitoring(): \(error.localizedDescription)")
-        }
         timer?.invalidate()
     }
 
     @objc func tick() {
+        guard tracker.amplitude > threshold else {
+            return
+        }
+        
         /* Read frequency and amplitude from the analyzer. */
-        let frequency = tracker.frequency
+        let frequency = smooth(tracker.frequency)
         let amplitude = tracker.amplitude
 
         /* Find nearest pitch. */
@@ -95,5 +93,22 @@ class Tuner: NSObject {
         /* Call the delegate. */
         self.delegate?.tunerDidMeasure(pitch: pitch, distance: distance,
                                             amplitude: amplitude)
+    }
+    
+    /**
+     Exponential smoothing:
+     https://en.wikipedia.org/wiki/Exponential_smoothing
+     */
+    fileprivate func smooth(_ value: Double) -> Double {
+        var frequency = value
+        if smoothingBuffer.count > 0 {
+            let last = smoothingBuffer.last!
+            frequency = (smoothing * value) + (1.0 - smoothing) * last
+            if smoothingBuffer.count > smoothingBufferCount {
+                smoothingBuffer.removeFirst()
+            }
+        }
+        smoothingBuffer.append(frequency)
+        return frequency
     }
 }
