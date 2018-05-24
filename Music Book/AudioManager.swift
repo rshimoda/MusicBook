@@ -12,9 +12,9 @@ import AudioKitUI
 class AudioManager {
     static let shared = AudioManager()
     
-    var microphone: AKMicrophone!
+    private var microphone: AKMicrophone!
     
-    init() {
+    private init() {
         AKSettings.playbackWhileMuted = true
         AKSettings.defaultToSpeaker = true
         AKSettings.audioInputEnabled = true
@@ -28,7 +28,7 @@ class AudioManager {
         }
     }
     
-    static func start() {
+    public static func start() {
         do {
             try AudioKit.start()
         } catch {
@@ -36,7 +36,15 @@ class AudioManager {
         }
     }
     
-    static func stop() {
+    public func resume() {
+        microphone.start()
+    }
+    
+    public func pause() {
+        microphone.stop()
+    }
+    
+    public static func stop() {
         do {
             try AudioKit.stop()
         } catch {
