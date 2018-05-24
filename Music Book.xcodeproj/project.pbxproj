@@ -38,6 +38,7 @@
 		49961BEF20B3776000368F1B /* Commons.h in Headers */ = {isa = PBXBuildFile; fileRef = 49961BBA20B374D300368F1B /* Commons.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49961BF220B42F3100368F1B /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492924F0209B0B5C006C58DD /* DataStorage.swift */; };
 		49961BF320B42F3300368F1B /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49961BA620B3540800368F1B /* State.swift */; };
+		49DE34FC20B7666000022597 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DE34FB20B7666000022597 /* AudioManager.swift */; };
 		49F59C1F209B29D900D35875 /* RecordingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F59C1E209B29D900D35875 /* RecordingTableViewCell.swift */; };
 		49F823E22097DCA500584985 /* TunerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F823E12097DCA500584985 /* TunerViewController.swift */; };
 		49F823E6209A1A1800584985 /* MKGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F823E4209A1A1800584985 /* MKGradientView.swift */; };
@@ -144,6 +145,7 @@
 		49961BD820B3752100368F1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49961BEA20B3760F00368F1B /* RootContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootContainerViewController.swift; sourceTree = "<group>"; };
 		49961BEC20B3765000368F1B /* MenuNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuNavigationViewController.swift; sourceTree = "<group>"; };
+		49DE34FB20B7666000022597 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		49F59C1B209B1B9C00D35875 /* Music Book-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Music Book-Bridging-Header.h"; sourceTree = "<group>"; };
 		49F59C1E209B29D900D35875 /* RecordingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingTableViewCell.swift; sourceTree = "<group>"; };
 		49F823E12097DCA500584985 /* TunerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunerViewController.swift; sourceTree = "<group>"; };
@@ -242,12 +244,13 @@
 				49837016208F7ABE00D5F10D /* Main.storyboard */,
 				49961BEA20B3760F00368F1B /* RootContainerViewController.swift */,
 				49961BEC20B3765000368F1B /* MenuNavigationViewController.swift */,
-				49837014208F7ABE00D5F10D /* ViewController.swift */,
 				49F823E12097DCA500584985 /* TunerViewController.swift */,
+				49837014208F7ABE00D5F10D /* ViewController.swift */,
 				492924EE209B0AED006C58DD /* LibraryViewController.swift */,
 				49F59C1E209B29D900D35875 /* RecordingTableViewCell.swift */,
 				492924F0209B0B5C006C58DD /* DataStorage.swift */,
 				49961BA620B3540800368F1B /* State.swift */,
+				49DE34FB20B7666000022597 /* AudioManager.swift */,
 				492924ED209A665B006C58DD /* Tuner */,
 				49F823E8209A1A1E00584985 /* MKGradientView */,
 				49961BA820B374C900368F1B /* SplashScreenUI */,
@@ -681,6 +684,7 @@
 				492924EC209A6652006C58DD /* Pitch.swift in Sources */,
 				49961BF320B42F3300368F1B /* State.swift in Sources */,
 				49961BEB20B3760F00368F1B /* RootContainerViewController.swift in Sources */,
+				49DE34FC20B7666000022597 /* AudioManager.swift in Sources */,
 				49F59C1F209B29D900D35875 /* RecordingTableViewCell.swift in Sources */,
 				492924EA209A6652006C58DD /* Tuner.swift in Sources */,
 				492924EB209A6652006C58DD /* Note.swift in Sources */,
