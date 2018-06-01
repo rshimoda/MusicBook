@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		491DD95620BC161100CF7318 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491DD95520BC161100CF7318 /* Extentions.swift */; };
+		491DD95820BC32A100CF7318 /* TrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491DD95720BC32A100CF7318 /* TrackViewController.swift */; };
+		491DD95A20BC501400CF7318 /* SonogramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491DD95920BC501400CF7318 /* SonogramView.swift */; };
 		492329EE2097414E00B66E3D /* Me.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492329ED2097414D00B66E3D /* Me.swift */; };
 		492329F0209768A000B66E3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 492329EF209768A000B66E3D /* Assets.xcassets */; };
-		492924EA209A6652006C58DD /* Tuner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492924E7209A6652006C58DD /* Tuner.swift */; };
 		492924EB209A6652006C58DD /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492924E8209A6652006C58DD /* Note.swift */; };
 		492924EC209A6652006C58DD /* Pitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492924E9209A6652006C58DD /* Pitch.swift */; };
 		492924EF209B0AED006C58DD /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492924EE209B0AED006C58DD /* LibraryViewController.swift */; };
@@ -39,6 +41,8 @@
 		49961BF220B42F3100368F1B /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492924F0209B0B5C006C58DD /* DataStorage.swift */; };
 		49961BF320B42F3300368F1B /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49961BA620B3540800368F1B /* State.swift */; };
 		49DE34FC20B7666000022597 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DE34FB20B7666000022597 /* AudioManager.swift */; };
+		49EBF24C20C14BA2002E26AF /* Intro.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 49EBF24B20C14BA2002E26AF /* Intro.m4a */; };
+		49EBF24E20C1593C002E26AF /* Hotel Des Arts.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 49EBF24D20C1593C002E26AF /* Hotel Des Arts.gpx */; };
 		49F59C1F209B29D900D35875 /* RecordingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F59C1E209B29D900D35875 /* RecordingTableViewCell.swift */; };
 		49F823E22097DCA500584985 /* TunerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F823E12097DCA500584985 /* TunerViewController.swift */; };
 		49F823E6209A1A1800584985 /* MKGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F823E4209A1A1800584985 /* MKGradientView.swift */; };
@@ -106,6 +110,9 @@
 		37AE99B7797761E8436938B9 /* Pods-Music Book.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music Book.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Music Book/Pods-Music Book.debug.xcconfig"; sourceTree = "<group>"; };
 		3B9126F3156D5D019C87C582 /* Pods_Music_Book.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Music_Book.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		44A9268958B5267170557EC1 /* Pods-Music BookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music BookTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Music BookTests/Pods-Music BookTests.debug.xcconfig"; sourceTree = "<group>"; };
+		491DD95520BC161100CF7318 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
+		491DD95720BC32A100CF7318 /* TrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewController.swift; sourceTree = "<group>"; };
+		491DD95920BC501400CF7318 /* SonogramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonogramView.swift; sourceTree = "<group>"; };
 		492329ED2097414D00B66E3D /* Me.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Me.swift; sourceTree = "<group>"; };
 		492329EF209768A000B66E3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		492924E7209A6652006C58DD /* Tuner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tuner.swift; sourceTree = "<group>"; };
@@ -146,6 +153,8 @@
 		49961BEA20B3760F00368F1B /* RootContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootContainerViewController.swift; sourceTree = "<group>"; };
 		49961BEC20B3765000368F1B /* MenuNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuNavigationViewController.swift; sourceTree = "<group>"; };
 		49DE34FB20B7666000022597 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		49EBF24B20C14BA2002E26AF /* Intro.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Intro.m4a; sourceTree = "<group>"; };
+		49EBF24D20C1593C002E26AF /* Hotel Des Arts.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Hotel Des Arts.gpx"; sourceTree = "<group>"; };
 		49F59C1B209B1B9C00D35875 /* Music Book-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Music Book-Bridging-Header.h"; sourceTree = "<group>"; };
 		49F59C1E209B29D900D35875 /* RecordingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingTableViewCell.swift; sourceTree = "<group>"; };
 		49F823E12097DCA500584985 /* TunerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunerViewController.swift; sourceTree = "<group>"; };
@@ -248,15 +257,15 @@
 				49837014208F7ABE00D5F10D /* ViewController.swift */,
 				492924EE209B0AED006C58DD /* LibraryViewController.swift */,
 				49F59C1E209B29D900D35875 /* RecordingTableViewCell.swift */,
-				492924F0209B0B5C006C58DD /* DataStorage.swift */,
-				49961BA620B3540800368F1B /* State.swift */,
-				49DE34FB20B7666000022597 /* AudioManager.swift */,
+				491DD95720BC32A100CF7318 /* TrackViewController.swift */,
+				498C35B220BD734B005FCC6D /* Helpers */,
 				492924ED209A665B006C58DD /* Tuner */,
+				498C35B320BD7360005FCC6D /* SonogramView */,
 				49F823E8209A1A1E00584985 /* MKGradientView */,
-				49961BA820B374C900368F1B /* SplashScreenUI */,
+				49961BA820B374C900368F1B /* SplashScreenView */,
 				49961BB820B374D300368F1B /* Commons */,
-				49F823E3209A1A0800584985 /* Me */,
 				49837040208F7E0700D5F10D /* Supporting Files */,
+				49EBF24A20C14B7A002E26AF /* Resourses */,
 			);
 			path = "Music Book";
 			sourceTree = "<group>";
@@ -282,16 +291,36 @@
 		49837040208F7E0700D5F10D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				4983701E208F7AC000D5F10D /* Info.plist */,
-				492329EF209768A000B66E3D /* Assets.xcassets */,
 				49837012208F7ABE00D5F10D /* AppDelegate.swift */,
+				49DE34FB20B7666000022597 /* AudioManager.swift */,
+				492924F0209B0B5C006C58DD /* DataStorage.swift */,
+				491DD95520BC161100CF7318 /* Extentions.swift */,
 				4983701B208F7AC000D5F10D /* LaunchScreen.storyboard */,
 				49F59C1B209B1B9C00D35875 /* Music Book-Bridging-Header.h */,
+				492329EF209768A000B66E3D /* Assets.xcassets */,
+				4983701E208F7AC000D5F10D /* Info.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		49961BA820B374C900368F1B /* SplashScreenUI */ = {
+		498C35B220BD734B005FCC6D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				492329ED2097414D00B66E3D /* Me.swift */,
+				49961BA620B3540800368F1B /* State.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		498C35B320BD7360005FCC6D /* SonogramView */ = {
+			isa = PBXGroup;
+			children = (
+				491DD95920BC501400CF7318 /* SonogramView.swift */,
+			);
+			path = SonogramView;
+			sourceTree = "<group>";
+		};
+		49961BA820B374C900368F1B /* SplashScreenView */ = {
 			isa = PBXGroup;
 			children = (
 				49961BA920B374C900368F1B /* Constants.swift */,
@@ -303,7 +332,7 @@
 				49961BAF20B374C900368F1B /* Chimes.xcassets */,
 				49961BB020B374C900368F1B /* Info.plist */,
 			);
-			path = SplashScreenUI;
+			path = SplashScreenView;
 			sourceTree = "<group>";
 		};
 		49961BB820B374D300368F1B /* Commons */ = {
@@ -334,12 +363,13 @@
 			path = Commons;
 			sourceTree = "<group>";
 		};
-		49F823E3209A1A0800584985 /* Me */ = {
+		49EBF24A20C14B7A002E26AF /* Resourses */ = {
 			isa = PBXGroup;
 			children = (
-				492329ED2097414D00B66E3D /* Me.swift */,
+				49EBF24D20C1593C002E26AF /* Hotel Des Arts.gpx */,
+				49EBF24B20C14BA2002E26AF /* Intro.m4a */,
 			);
-			path = Me;
+			path = Resourses;
 			sourceTree = "<group>";
 		};
 		49F823E8209A1A1E00584985 /* MKGradientView */ = {
@@ -552,7 +582,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49EBF24E20C1593C002E26AF /* Hotel Des Arts.gpx in Resources */,
 				4983701D208F7AC000D5F10D /* LaunchScreen.storyboard in Resources */,
+				49EBF24C20C14BA2002E26AF /* Intro.m4a in Resources */,
 				492329F0209768A000B66E3D /* Assets.xcassets in Resources */,
 				49837018208F7ABE00D5F10D /* Main.storyboard in Resources */,
 			);
@@ -682,14 +714,16 @@
 				49961BF220B42F3100368F1B /* DataStorage.swift in Sources */,
 				49837013208F7ABE00D5F10D /* AppDelegate.swift in Sources */,
 				492924EC209A6652006C58DD /* Pitch.swift in Sources */,
+				491DD95620BC161100CF7318 /* Extentions.swift in Sources */,
 				49961BF320B42F3300368F1B /* State.swift in Sources */,
+				491DD95820BC32A100CF7318 /* TrackViewController.swift in Sources */,
 				49961BEB20B3760F00368F1B /* RootContainerViewController.swift in Sources */,
 				49DE34FC20B7666000022597 /* AudioManager.swift in Sources */,
 				49F59C1F209B29D900D35875 /* RecordingTableViewCell.swift in Sources */,
-				492924EA209A6652006C58DD /* Tuner.swift in Sources */,
 				492924EB209A6652006C58DD /* Note.swift in Sources */,
 				492329EE2097414E00B66E3D /* Me.swift in Sources */,
 				49F823E7209A1A1800584985 /* MKGradientGenerator.swift in Sources */,
+				491DD95A20BC501400CF7318 /* SonogramView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

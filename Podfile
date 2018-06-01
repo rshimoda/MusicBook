@@ -12,6 +12,7 @@ target 'Music Book' do
   pod 'Hero'
   pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
   pod 'DZNEmptyDataSet'
+#  pod 'AnimatablePlayButton'
 
   target 'Music BookTests' do
     inherit! :search_paths

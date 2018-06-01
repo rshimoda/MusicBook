@@ -55,11 +55,11 @@ class RootContainerViewController: UIViewController {
         splashViewController.didMove(toParentViewController: self)
     }
     
-    /// Simulates an API handshake success and transitions to MapViewController
+    /// Simulates an API handshake success and transitions to ViewController
     func showSplashViewController() {
         showSplashViewControllerNoPing()
         
-        delay(1.50) {
+        delay(0.75) {
             self.showMenuNavigationViewController()
         }
     }
