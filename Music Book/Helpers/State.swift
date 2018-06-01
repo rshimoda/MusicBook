@@ -7,10 +7,13 @@
 //
 
 enum AKState {
-    case automaticRecognition
+    case ready
+    case readyToTune
+    case tuning
+    case detectingNoise
     case readyToRecord
     case recording
     case readyToPlay
     case playing
-    case noAccess
+    case paused
 }
