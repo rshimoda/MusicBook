@@ -8,15 +8,18 @@
 
 import UIKit
 import Hero
-import AudioKit
+import AudioKitUI
 import ChameleonFramework
 
-class ViewController: UIViewController, AVAudioRecorderDelegate {
+class ViewController: UIViewController, RecorderDelegate {
+    
+    var isAutoModeEnabled =                     false
     
     // MARK: - Outlets
     
     @IBOutlet weak var gradientView:            MKGradientView!
     @IBOutlet weak var recordingGradientView:   MKGradientView!
+    @IBOutlet weak var audioPlot:               EZAudioPlot!
     @IBOutlet weak var autoButtonContainer:     UIView!
     @IBOutlet weak var autoButton:              UIButton!
     @IBOutlet weak var recordButton:            UIButton!
@@ -24,33 +27,23 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     @IBOutlet weak var tunnerButton:            UIButton!
     @IBOutlet weak var libraryButton:           UIButton!
     
-    // MARK: - AudioKit Variables
+    var stopButtonCornerRadiusIdentity:         CGFloat!
     
-    let mic =                                   AudioManager.shared.microphone
-    var micMixer:                               AKMixer!
-    var recorder:                               AKNodeRecorder!
-    var player:                                 AKPlayer!
-    var tape:                                   AKAudioFile!
-    var micBooster:                             AKBooster!
-    var moogLadder:                             AKMoogLadder!
-    var delay:                                  AKDelay!
-    var mainMixer:                              AKMixer!
+    // MARK: - Audio Manager
     
-    // MARK: - Internal Variables
-    
-    private var state =                         AKState.readyToRecord
-    
-    var fileURL: URL {
-        return getDocumentsDirectory().appendingPathComponent("recording\(DataStorage.audios.count).m4a")
-    }
+    let audioManager =                          AudioManager.shared
     
     // MARK: - View Controller
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupRecorder()
+        audioManager.recorderDelegate = self
         setupUI()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        audioManager.stopRecording()
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,120 +62,108 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
                        options: [],
                        animations: {
                         self.recordButton.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-        },
-                       completion: { finished in
         })
+        
+        stopButton.layer.masksToBounds = true
+        stopButton.layer.cornerRadius = stopButton.frame.size.width / 2
+        stopButtonCornerRadiusIdentity = stopButton.layer.cornerRadius
+        
+        let plot = AKNodeOutputPlot(audioManager.mic, frame: audioPlot.bounds)
+        plot.plotType = .rolling
+        plot.shouldFill = true
+        plot.shouldMirror = true
+        plot.color = .flatWhite
+        plot.backgroundColor = .clear
+        audioPlot.addSubview(plot)
     }
     
-    // MARK: - Recording
+    // MARK: - Actions
     
-    func setupRecorder() {
-        AKAudioFile.cleanTempDirectory()
-        
-        micMixer = AKMixer(mic)
-        
-        micBooster = AKBooster(micMixer)
-        micBooster.gain = 0
-        
-        recorder = try? AKNodeRecorder(node: micMixer)
-        
-//        if let audioFile = recorder.audioFile {
-//            player = AKPlayer(audioFile: audioFile)
-//        }
-        
-//        player.isLooping = true
-        
-//        moogLadder = AKMoogLadder(player)
-//        mainMixer = AKMixer(moogLadder, micBooster)
-        
-        AudioKit.output = micBooster // mainMixer
-        AudioManager.start()
-        
-//        do {
-//            try AudioKit.start()
-//            recorderWasSetUp = true
-//        } catch {
-//            AKLog("Failed to start AudioKit.")
-//        }
-    }
-
     @IBAction func toggleAuto() {
-        if state == .automaticRecognition {
+        if isAutoModeEnabled {
             autoButtonContainer.backgroundColor = UIColor.clear
             recordButton.isEnabled = true
-            state = .readyToRecord
+            audioPlot.isHidden = true
         } else {
             autoButtonContainer.backgroundColor = UIColor.flatRed
             recordButton.isEnabled = false
-            state = .automaticRecognition
+            audioPlot.isHidden = false
+        }
+        isAutoModeEnabled = !isAutoModeEnabled
+    }
+    
+    @IBAction func toggleRecord() {
+        if audioManager.state == .recording {
+            stopRecording()
+        } else {
+            startRecording()
         }
     }
     
-    @IBAction func startRecording() {
-        recordButton.isEnabled = false
-        UIView.animate(withDuration: 0.1) { [unowned self] in
-            self.recordingGradientView.isHidden = false
-            self.autoButton.isEnabled = false
-            self.stopButton.isHidden = false
+    func startRecording() {
+        /* Update UI */
+        self.audioPlot.isHidden = false
+        self.audioPlot.resetHistoryBuffers()
+        
+        self.recordingGradientView.isHidden = false
+        
+        self.autoButton.isEnabled = false
+        
+        UIView.animate(withDuration: 0.3) { [unowned self] in
             self.recordButton.isEnabled = false
-            self.recordButton.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+            self.recordButton.transform = .identity
+
+            self.stopButton.backgroundColor = UIColor(hexString: "FF2242") // .flatRed
+            self.stopButton.layer.cornerRadius = 5
+            self.stopButton.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
         }
         
-        guard state == .readyToRecord else {
-            debugPrint("Recording cannot be started.")
+        audioManager.startRecording()
+    }
+    
+    func stopRecording() {
+        /* Update UI */
+        UIView.animate(withDuration: 0.3,
+                       animations: { [unowned self] in
+                        self.audioPlot.isHidden = true
+                        
+                        self.recordingGradientView.isHidden = true
+                        
+                        self.autoButton.isEnabled = true
+                        
+//                        self.recordButton.isEnabled = false
+                        self.recordButton.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+                        
+                        self.stopButton.backgroundColor = UIColor(red: 0.17, green: 0.3, blue: 0.46, alpha: 1)
+                        self.stopButton.layer.cornerRadius = self.stopButtonCornerRadiusIdentity
+                        self.stopButton.transform = .identity
+                        
+            },
+                       completion: { [unowned self] _ in
+                        self.stopButton.isEnabled = false
+                        self.audioManager.stopRecording()
+        })
+    }
+    
+    // MARK: - Recorder Delegate
+    
+    func recorderWillStartRecording() {
+        
+    }
+    
+    func recorderDidFinishRecording(successfully: Bool, tape: AKAudioFile?) {
+        guard successfully else {
             return
         }
         
-        state = .recording
-        
-        if AKSettings.headPhonesPlugged {
-            micBooster.gain = 1
-        }
-        
-        do {
-            try recorder.record()
-        } catch {
-            AKLog("Failed to start recording.")
-        }
-    }
-    
-    @IBAction func stopRecording() {
-        /* Update UI */
-        UIView.animate(withDuration: 0.3) { [unowned self] in
-            self.recordingGradientView.isHidden = true
-            self.autoButton.isEnabled = true
-            self.stopButton.isHidden = true
-            self.recordButton.isEnabled = true
-            self.recordButton.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-        }
-        
-        /* Stop the recording and get the audio file */
-        state = .readyToRecord
-        
-        micBooster.gain = 0
-        tape = recorder.audioFile!
-        recorder.stop()
-        
         /* Save to the Data Storage */
-        DataStorage.audios.append(tape)
+        DataStorage.audios.append(tape!)
         
         /* Segue to the library */
         performSegue(withIdentifier: "Open Library", sender: self)
     }
     
     // MARK: - Helpers
-    
-    func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths.first!
-    }
-    
-    func getURLforMemo() -> URL {
-        let tempDir = NSTemporaryDirectory()
-        let filePath = "\(tempDir)/TempMemo\(DataStorage.audios.count).caf"
-        
-        return URL.init(fileURLWithPath: filePath) //.fileURLWithPath(filePath)
-    }
     
     func formattedCurrentTime(time: UInt) -> String {
         let hours = time / 3600
@@ -195,14 +176,6 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if state == .automaticRecognition {
-            toggleAuto()
-        }
-        
-        if state == .recording {
-            stopRecording()
-        }
-        
         /* Transition Animation */
         guard let identifier = segue.identifier else {
             return
@@ -222,9 +195,9 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     @IBAction func rewindToRecordViewController(sender: UIStoryboardSegue) {
-        recordButton.isEnabled = true
-        try! recorder.reset()
-        try! AudioKit.start()
+        stopButton.isEnabled = true
+        autoButton.isEnabled = true
+
     }
 }
 

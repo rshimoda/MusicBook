@@ -7,11 +7,24 @@
 //
 
 import UIKit
+import AudioKitUI
 
 class RecordingTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var title: UITextField!
+    @IBOutlet weak var duration: UILabel!
     @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var sonogram: EZAudioPlot!
+    
+    var isExpanded = false {
+        didSet {
+            title.isEnabled = !oldValue
+            playButton.isHidden = oldValue
+            sonogram.isHidden = oldValue
+        }
+    }
+    
+    var audioFile: AKAudioFile!
     
     override func awakeFromNib() {
         super.awakeFromNib()

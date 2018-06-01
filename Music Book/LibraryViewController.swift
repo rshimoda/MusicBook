@@ -10,21 +10,20 @@ import UIKit
 import AudioKit
 import DZNEmptyDataSet
 import Sugar
+import ChameleonFramework
 
-class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
+class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, UITextFieldDelegate, PlayerDelegate {
     
     @IBOutlet weak var tableView:   UITableView!
     
-    var player:                     AKPlayer!
-    var moogLadder:                 AKMoogLadder!
-    var delay:                      AKDelay!
-    var mainMixer:                  AKMixer!
-    
-    var indexPathForPlayingRow:     IndexPath?
-    var state =                     AKState.noAccess
-    
-    func audioPlayerDidFinishPlaying() {
-        tableView.deselectRow(at: indexPathForPlayingRow!, animated: true)
+    let audioManager =              AudioManager.shared
+    var selectedRow:                IndexPath? {
+        didSet {
+            /* Collapse previously choosen cell */
+            if let _ = oldValue {
+                (tableView.cellForRow(at: oldValue!) as! RecordingTableViewCell).isExpanded = false
+            }
+        }
     }
     
     // MARK: - View Controller
@@ -40,35 +39,67 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.emptyDataSetDelegate = self
         tableView.emptyDataSetSource = self
         
+        self.hideKeyboardWhenTappedAround()
+//        self.deselectAllWhenTappedAround()
+        
         guard DataStorage.audios.count > 0 else {
             return
         }
         
-        /* Animate new added recording */
-        self.tableView.selectRow(at: IndexPath(row: DataStorage.audios.count - 1, section: 0), animated: true, scrollPosition: UITableViewScrollPosition(rawValue: 0)!)
-//        sleep(100)
-        self.tableView.deselectRow(at: IndexPath(row: DataStorage.audios.count - 1, section: 0), animated: true)
-        self.state = .readyToPlay
-        
-        if DataStorage.audios.count > 0 {
-            player = AKPlayer(audioFile: DataStorage.audios.first!)
+        audioManager.playerDelegate = self
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if audioManager.state == .playing || audioManager.state == .paused {
+            audioManager.stopPlaying()
         }
-        
-        player.completionHandler = audioPlayerDidFinishPlaying
-        moogLadder = AKMoogLadder(player)
-        mainMixer = AKMixer(moogLadder)
-        AudioKit.output = mainMixer
-        
-//        do {
-//            try AudioKit.start()
-//        } catch {
-//            AKLog("Failed to start AudioKit")
-//        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func play(_ sender: UIButton) {
+        switch audioManager.state {
+        case .ready, .paused:
+            if let selectedIndex = selectedRow?.row {
+                sender.setImage(UIImage(named: "Pause"), for: .normal)
+                sender.setImage(UIImage(named: "Pause-Highlighted"), for: .highlighted)
+                sender.setImage(UIImage(named: "Pause-Disabled"), for: .disabled)
+                
+                if audioManager.state == .ready {
+                    let tape = DataStorage.audios[selectedIndex]
+                    audioManager.play(tape: tape)
+                } else {
+                    audioManager.resumePlaying()
+                }
+            }
+        case .playing:
+            sender.setImage(UIImage(named: "Play"), for: .normal)
+            sender.setImage(UIImage(named: "Play-Highlighted"), for: .highlighted)
+            sender.setImage(UIImage(named: "Play-Disabled"), for: .disabled)
+            
+            audioManager.pausePlaying()
+        default:
+            return
+        }
+    }
+    
+    // MARK: - Player Delegate
+    
+    func playerDidFinishPlaying() {
+        audioManager.stopPlaying()
+    }
+    
+    // MARK: - Text Fiel Delegate
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     // MARK: - DZEmptyDataSet
@@ -83,6 +114,16 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
         return 1
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let selected = self.selectedRow {
+            if selected == indexPath {
+                return 100.0
+            }
+        }
+        
+        return 48.0
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return DataStorage.audios.count
     }
@@ -91,31 +132,61 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: "Record Cell", for: indexPath) as! RecordingTableViewCell
         
         cell.title.text = "La meva idea \(indexPath.row + 1)"
+        cell.title.delegate = self
+        
+        let duration = Int(DataStorage.audios[indexPath.row].duration)
+        cell.duration.text = String(format: "%d:%.02d", duration / 60, duration % 60)
+        cell.audioFile = DataStorage.audios[indexPath.row]
+
+        cell.sonogram.backgroundColor = .clear
+        cell.sonogram.color = .flatWhite
+        cell.sonogram.shouldOptimizeForRealtimePlot = false
+        cell.sonogram.plotType = .buffer // addDurationOfFileWith(url: DataStorage.audios[indexPath.row].url)
+        cell.sonogram.shouldFill = true
+        cell.sonogram.shouldMirror = true
+        
+        if let audioFile = EZAudioFile(url: cell.audioFile.url), let waweFormData = audioFile.getWaveformData() {
+            cell.sonogram.updateBuffer(waweFormData.buffers[0], withBufferSize: waweFormData.bufferSize)
+        }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        indexPathForPlayingRow = indexPath
-        
-        switch state {
-        case .playing:
-            player.stop()
-        case .readyToPlay:
-            player.load(audioFile: DataStorage.audios[indexPath.row])
-            player.play()
-        default:
-            return
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        if selectedRow == indexPath {
+            performSegue(withIdentifier: "Open Track", sender: self)
+        } else {
+            selectedRow = indexPath
+            
+            (tableView.cellForRow(at: indexPath) as! RecordingTableViewCell).isExpanded = true
+            
+            tableView.beginUpdates()
+            tableView.endUpdates()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            DataStorage.audios.remove(at: indexPath.row)
+            tableView.reloadData()
         }
     }
     
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if state == .playing {
-            player.stop()
+        if let segueName = segue.identifier {
+            if segueName == "Open Track" {
+                segue.destination.navigationItem.title = (tableView.cellForRow(at: selectedRow!) as! RecordingTableViewCell).title.text ?? " "
+                segue.destination.hero.isEnabled = true
+                segue.destination.hero.modalAnimationType = .selectBy(presenting: .slide(direction: .left), dismissing: .slide(direction: .right))
+            }
         }
-        
-//        try! AudioKit.stop()
     }
 }

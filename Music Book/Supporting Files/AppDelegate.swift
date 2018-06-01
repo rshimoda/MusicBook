@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 import AudioKit
 
 @UIApplicationMain
@@ -14,13 +15,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        do {
-            try AKSettings.setSession(category: .playAndRecord, with: .allowBluetoothA2DP)
-        } catch {
-            AKLog("ERROR: Couldn't set session category (\(error.localizedDescription))")
+        /* Manage Record Permission */
+        switch AVAudioSession.sharedInstance().recordPermission() {
+        case .granted:
+            os_log("Record Permission is Granted", log: OSLog.default, type: .info)
+            do {
+                try AKSettings.setSession(category: .playAndRecord, with: [.allowBluetoothA2DP, .mixWithOthers, .allowAirPlay, .defaultToSpeaker])
+                AudioManager.shared.start()
+            } catch {
+                AKLog("ERROR: Couldn't set session category (\(error.localizedDescription))")
+            }
+        case .denied:
+            os_log("Record Permission is Denied", log: OSLog.default, type: .fault)
+        case .undetermined:
+            os_log("Record Permission is Undetermined", log: OSLog.default, type: .info)
+            AVAudioSession.sharedInstance().requestRecordPermission { (granted) in
+                
+            }
         }
+
         
         /* Microphone permission request */
 //        let session = AVAudioSession.sharedInstance()
