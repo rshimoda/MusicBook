@@ -12,7 +12,7 @@ import DZNEmptyDataSet
 import Sugar
 import ChameleonFramework
 
-class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, UITextFieldDelegate, PlayerDelegate {
+class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, UITextFieldDelegate, PlayerDelegate, EZAudioPlayerDelegate {
     
     @IBOutlet weak var tableView:   UITableView!
     
@@ -59,6 +59,17 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: - EZAudioPlayer Delegate
+    
+    func audioPlayer(_ audioPlayer: EZAudioPlayer!, reachedEndOf audioFile: EZAudioFile!) {
+        dispatch {
+            let cell = (self.tableView.cellForRow(at: self.selectedRow!) as! RecordingTableViewCell)
+            cell.playButton.setImage(UIImage(named: "Play"), for: .normal)
+            cell.playButton.setImage(UIImage(named: "Play-Highlighted"), for: .highlighted)
+            cell.playButton.setImage(UIImage(named: "Play-Disabled"), for: .disabled)
+        }
     }
     
     // MARK: - Actions

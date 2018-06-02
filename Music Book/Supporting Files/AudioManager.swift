@@ -27,7 +27,7 @@ protocol RecorderDelegate {
     func recorderDidFinishRecording(successfully: Bool, tape: AKAudioFile?)
 }
 
-protocol PlayerDelegate {
+protocol PlayerDelegate: EZAudioPlayerDelegate {
     func playerDidFinishPlaying()
 }
 
@@ -87,6 +87,8 @@ class AudioManager {
     fileprivate var playerMoogLadder:       AKMoogLadder
     fileprivate var playerMainMixer:        AKMixer // output for player
     
+    fileprivate var ezPlayer:               EZAudioPlayer!
+    
     // MARK: - Initializtion
     
     private init() {
@@ -127,7 +129,7 @@ class AudioManager {
         /* Recorder Setup */
         AKAudioFile.cleanTempDirectory()
         recorderMicMixer = AKMixer(mic)
-        recorderMicBooster = AKBooster(recorderMicMixer)// , gain: 0)
+        recorderMicBooster = AKBooster(recorderMicMixer, gain: 0)
         recorder = try! AKNodeRecorder(node: recorderMicMixer)
         
         /* Player Setup */
@@ -283,28 +285,33 @@ class AudioManager {
     // MARK: - Player
     
     func play(tape: AKAudioFile) {
-        player.completionHandler = playerDelegate?.playerDidFinishPlaying
+//        player.completionHandler = playerDelegate?.playerDidFinishPlaying
+        ezPlayer = EZAudioPlayer(audioFile: EZAudioFile(url: tape.url), delegate: self.playerDelegate)
         switchState(to: .readyToPlay)
-        
-        player.load(audioFile: tape)
-        player.play()
+
+        ezPlayer.play()
+//        player.load(audioFile: tape)
+//        player.play()
         
         state = .playing
     }
     
     func pausePlaying() {
         switchState(to: .readyToPlay)
-        player.pause()
+//        player.pause()
+        ezPlayer.pause()
     }
     
     func resumePlaying() {
         switchState(to: .playing)
-        player.resume()
+//        player.resume()
+        ezPlayer.play()
     }
     
     func stopPlaying() {
         switchState(to: .ready)
-        player.stop()
+//        player.stop()
+        ezPlayer.pause()
         mic.start()
     }
     
