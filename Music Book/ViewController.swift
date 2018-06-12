@@ -37,13 +37,19 @@ class ViewController: UIViewController, RecorderDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        audioManager.recorderDelegate = self
+        audioManager.recorder.delegate = self
         setupUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+//        audioManager.setupRecorder()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        audioManager.stopRecording()
+        if audioManager.state == .recording {
+            audioManager.recorder.stopRecording()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -102,6 +108,10 @@ class ViewController: UIViewController, RecorderDelegate {
     
     func startRecording() {
         /* Update UI */
+        if isAutoModeEnabled {
+            toggleAuto()
+        }
+        
         self.audioPlot.isHidden = false
         self.audioPlot.resetHistoryBuffers()
         
@@ -118,7 +128,7 @@ class ViewController: UIViewController, RecorderDelegate {
             self.stopButton.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
         }
         
-        audioManager.startRecording()
+        audioManager.recorder.startRecording()
     }
     
     func stopRecording() {
@@ -141,7 +151,7 @@ class ViewController: UIViewController, RecorderDelegate {
             },
                        completion: { [unowned self] _ in
                         self.stopButton.isEnabled = false
-                        self.audioManager.stopRecording()
+                        self.audioManager.recorder.stopRecording()
         })
     }
     
@@ -151,13 +161,13 @@ class ViewController: UIViewController, RecorderDelegate {
         
     }
     
-    func recorderDidFinishRecording(successfully: Bool, tape: AKAudioFile?) {
-        guard successfully else {
+    func recorderDidFinishRecording(tape: AKAudioFile?) {
+        guard let audioFile = tape else {
             return
         }
         
         /* Save to the Data Storage */
-        DataStorage.audios.append(tape!)
+        DataStorage.audios.append(audioFile)
         
         /* Segue to the library */
         performSegue(withIdentifier: "Open Library", sender: self)

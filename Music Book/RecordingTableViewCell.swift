@@ -13,14 +13,18 @@ class RecordingTableViewCell: UITableViewCell {
 
     @IBOutlet weak var title: UITextField!
     @IBOutlet weak var duration: UILabel!
+    @IBOutlet weak var date: UILabel!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var sonogram: EZAudioPlot!
+    
+    
+    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var bottomView: UIView!
     
     var isExpanded = false {
         didSet {
             title.isEnabled = !oldValue
-            playButton.isHidden = oldValue
-            sonogram.isHidden = oldValue
+            bottomView.isHidden = oldValue
         }
     }
     

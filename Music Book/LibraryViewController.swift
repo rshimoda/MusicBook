@@ -46,13 +46,20 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
             return
         }
         
-        audioManager.playerDelegate = self
+        audioManager.player.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if DataStorage.audios.count != tableView.numberOfRows(inSection: 0) {
+            tableView.reloadData()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if audioManager.state == .playing || audioManager.state == .paused {
-            audioManager.stopPlaying()
+            audioManager.player.stopPlaying()
         }
     }
 
@@ -72,6 +79,13 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    // MARK: - AVFoundation Player Delegate
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        (tableView.cellForRow(at: selectedRow!) as! RecordingTableViewCell).playButton.setImage(UIImage(named: "Play"), for: .normal)
+        audioManager.state = .ready
+    }
+    
     // MARK: - Actions
     
     @IBAction func play(_ sender: UIButton) {
@@ -79,22 +93,20 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
         case .ready, .paused:
             if let selectedIndex = selectedRow?.row {
                 sender.setImage(UIImage(named: "Pause"), for: .normal)
-                sender.setImage(UIImage(named: "Pause-Highlighted"), for: .highlighted)
-                sender.setImage(UIImage(named: "Pause-Disabled"), for: .disabled)
                 
                 if audioManager.state == .ready {
                     let tape = DataStorage.audios[selectedIndex]
-                    audioManager.play(tape: tape)
+                    audioManager.player.play(tape: tape)
                 } else {
-                    audioManager.resumePlaying()
+                    audioManager.player.resumePlaying()
                 }
             }
         case .playing:
             sender.setImage(UIImage(named: "Play"), for: .normal)
-            sender.setImage(UIImage(named: "Play-Highlighted"), for: .highlighted)
-            sender.setImage(UIImage(named: "Play-Disabled"), for: .disabled)
+//            sender.setImage(UIImage(named: "Play-Highlighted"), for: .highlighted)
+//            sender.setImage(UIImage(named: "Play-Disabled"), for: .disabled)
             
-            audioManager.pausePlaying()
+            audioManager.player.pausePlaying()
         default:
             return
         }
@@ -103,7 +115,7 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: - Player Delegate
     
     func playerDidFinishPlaying() {
-        audioManager.stopPlaying()
+        audioManager.player.stopPlaying()
     }
     
     // MARK: - Text Fiel Delegate
@@ -128,11 +140,11 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if let selected = self.selectedRow {
             if selected == indexPath {
-                return 100.0
+                return 120.0
             }
         }
         
-        return 48.0
+        return 64.0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -194,9 +206,16 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let segueName = segue.identifier {
             if segueName == "Open Track" {
-                segue.destination.navigationItem.title = (tableView.cellForRow(at: selectedRow!) as! RecordingTableViewCell).title.text ?? " "
-                segue.destination.hero.isEnabled = true
-                segue.destination.hero.modalAnimationType = .selectBy(presenting: .slide(direction: .left), dismissing: .slide(direction: .right))
+                if let destination = (segue.destination as! UINavigationController).viewControllers.first as? TrackViewController {
+                    destination.trackTitle = (tableView.cellForRow(at: selectedRow!) as! RecordingTableViewCell).title.text ?? " "
+                    destination.audioFile = DataStorage.audios[selectedRow!.row]
+                    destination.audioFileIndex = selectedRow!.row
+                    
+                    destination.navigationController?.navigationBar.backgroundColor = UIColor.flatNavyBlueDark
+                    
+                    destination.hero.isEnabled = true
+//                    destination.hero.modalAnimationType = .selectBy(presenting: .zoomSlide(direction: .left), dismissing: .auto)
+                }
             }
         }
     }

@@ -9,8 +9,7 @@
 import UIKit
 import Sugar
 
-class TunerViewController: UIViewController, TunerDelegate {
-    
+class TunerViewController: UIViewController, TunerDelegate, NoiseEvaluatorUIDelegate {
     @IBOutlet weak var noteSign:                    UILabel!
     @IBOutlet weak var noiseLevelDetectionLabel:    UILabel!
     @IBOutlet weak var accuracyScale:               UIView!
@@ -18,16 +17,6 @@ class TunerViewController: UIViewController, TunerDelegate {
     
     @IBOutlet weak var leftPane: UIView!
     @IBOutlet weak var rightPane: UIView!
-    
-    /* When active accuracyView grows to RIGHT (POSITIVE) direction */
-    /* Priority: 1000 */
-    /* To change direction toggle .isInstalled property */
-    @IBOutlet var leadingConstraint: NSLayoutConstraint!
-    
-    /* When active accuracyView grows to LEFT (NEGATIVE) direction */
-    /* Priority: 999 */
-    @IBOutlet var trailingConstraint: NSLayoutConstraint!
-    
     
     var maxWidthForAccuracyView: Double {
         return Double(accuracyScale.frame.size.width)
@@ -37,6 +26,8 @@ class TunerViewController: UIViewController, TunerDelegate {
         return leftPane.isHidden
     }
     
+    var noiseDetectionLabelAnimationTimer: Timer?
+    
     // MARK: - Audio Manager
     
     let audioManager = AudioManager.shared
@@ -45,8 +36,11 @@ class TunerViewController: UIViewController, TunerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        audioManager.tunerDelegate = self
-        audioManager.startTuning()
+        audioManager.tuner.delegate = self
+        audioManager.noiseEvaluator.delegate = self
+        
+        audioManager.noiseEvaluator.startMeasuringNoiseLevel(for: 3.0)
+//        audioManager.tuner.start()
         
 //        self.accuracyView.isHidden = false
 //        UIView.animate(withDuration: 3, animations: {
@@ -56,37 +50,44 @@ class TunerViewController: UIViewController, TunerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        audioManager.startMeasuringNoiseLevel(during: 3.0)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        audioManager.stopTuning()
+        audioManager.tuner.stop()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    // MARK: - Noise Evaluator Delegate
+    
+    func noiseEvaluatorWillStartMeasuring(duration: TimeInterval) {
+        audioManager.tuner.stop()
+        
+        self.noiseLevelDetectionLabel.isHidden = false
+        
+        noiseDetectionLabelAnimationTimer = Timer.scheduledTimer(withTimeInterval: 0.6, repeats: true, block: { _ in
+            UIView.animate(withDuration: 0.6, animations: {
+                self.noiseLevelDetectionLabel.alpha = self.noiseLevelDetectionLabel.alpha == 1.0 ? 0.3 : 1.0
+            })
+        })
+//        translateAccuracyView(animationDuration: duration, translateX: maxWidthForAccuracyView)
+    }
+    
+    func noiseEvaluatorDidFinishMeasuring() {
+        noiseDetectionLabelAnimationTimer?.invalidate()
+        
+        self.noiseLevelDetectionLabel.isHidden = true
+
+        audioManager.tuner.start()
     }
     
     // MARK: - Tuner Delegate
-    
-    func tunerWillMeasureNoiseLevel(duration: TimeInterval) {
-        accuracyView.isHidden = true
-        noiseLevelDetectionLabel.isHidden = false
-        audioManager.stopTuning()
-    }
-    
-    func tunerDidMeasureNoiseLevel(noise: Double) {
-        noiseLevelDetectionLabel.isHidden = true
-        audioManager.startTuning()
-    }
     
     func tunerDidMeasure(pitch: Pitch, distance: Double, amplitude: Double) {
         
         // Too Quiet
         let animationDuration = 0.3
 
-        guard amplitude > audioManager.threshold && pitch.frequency > 90 else { // && (noteSign.text ?? "") != pitch.note.description {
+        guard amplitude > audioManager.noiseEvaluator.threshold && pitch.frequency > 90 else { // && (noteSign.text ?? "") != pitch.note.description {
             UIView.animate(withDuration: animationDuration, animations: { [unowned self] in
                 self.accuracyView.frame.size.width = 1
                 }, completion: { [unowned self] isCompleted  in
@@ -141,7 +142,7 @@ class TunerViewController: UIViewController, TunerDelegate {
         }
     }
     
-    func translateAccuracyView(animationDuration: Double, translateX: Double, completion: (() -> ())?) {
+    func translateAccuracyView(animationDuration: Double, translateX: Double, completion: (() -> ())? = nil) {
         UIView.animate(withDuration: animationDuration, animations: {
             /* Animate width */
             self.accuracyView.transform = CGAffineTransform(scaleX: CGFloat(translateX), y: 1)
