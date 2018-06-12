@@ -12,4 +12,5 @@ import AudioKit
 class DataStorage {
     static var applicationHasMicrophoneAccess = false
     static var audios: [AKAudioFile] = []
+    static var notes: [[(Pitch, Double)]] = []
 }

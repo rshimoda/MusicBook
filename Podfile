@@ -7,12 +7,12 @@ target 'Music Book' do
 
   # Pods for Music Book
 
-  pod 'AudioKit', '~> 4.2'
+  pod 'AudioKit'#, '~> 4.3'
   pod 'Sugar'
   pod 'Hero'
   pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
   pod 'DZNEmptyDataSet'
-#  pod 'AnimatablePlayButton'
+  pod 'Log'
 
   target 'Music BookTests' do
     inherit! :search_paths

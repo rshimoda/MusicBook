@@ -24,7 +24,7 @@ import Foundation
 import AudioKit
 import Sugar
 
-class Tuner: NSObject {
+class OldTuner: NSObject {
     var delegate: TunerDelegate?
 
     /* AudioKit instance variables. */
