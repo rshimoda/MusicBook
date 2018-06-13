@@ -30,6 +30,12 @@ class Recorder {
     
     // AVFoundation
     fileprivate var avRecorder:             AVAudioRecorder!
+    let recordSettings = [
+        AVFormatIDKey: Int(kAudioFormatLinearPCM),
+        AVSampleRateKey: 44100.0,
+        AVNumberOfChannelsKey: 1,
+        AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+        ] as [String : Any]
     
     // MARK: - Init
     
@@ -45,13 +51,6 @@ class Recorder {
             Log.info("Using EZAudio Recorder")
         case .av:
             let fileURL = getURLForAudio()
-            
-            let recordSettings = [
-                AVFormatIDKey: Int(kAudioFormatLinearPCM),
-                AVSampleRateKey: 44100.0,
-                AVNumberOfChannelsKey: 1,
-                AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
-                ] as [String : Any]
             
             do {
                 avRecorder = try AVAudioRecorder(url: fileURL, settings: recordSettings)
@@ -78,7 +77,6 @@ class Recorder {
                 Log.info("Headphones detected - Gaining microphone")
                 output.gain = 1
             }
-            
             do {
                 Log.info("Deleting leftovers")
                 try akRecorder.reset()
@@ -91,7 +89,17 @@ class Recorder {
             Log.info("Using EZAudio Recorder")
         case .av:
             Log.info("Using AVFoundation Recorder")
+            
+            do {
+            akTape = try AKAudioFile()
+            avRecorder = try AVAudioRecorder(url: akTape.url, settings: recordSettings)
+            avRecorder.delegate = self.delegate
+            avRecorder.prepareToRecord()
+            
             avRecorder.record()
+            } catch {
+                Log.warning("Couldn't start AVRecorder: \(error.localizedDescription)")
+            }
         }
         
         AudioManager.shared.state = .recording
@@ -160,8 +168,8 @@ class Recorder {
     
     private func stopAVRecorder() {
         avRecorder.stop()
-        
-        let audioFile = try! AKAudioFile(forReading: getURLForAudio())
-        delegate?.recorderDidFinishRecording(tape: audioFile)
+//        let audioFile = try! AKAudioFile(forReading: getURLForAudio())
+        let recording = try! AKAudioFile(forReading: akTape.url)
+        delegate?.recorderDidFinishRecording(tape: recording)
     }
 }

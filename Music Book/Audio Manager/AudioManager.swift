@@ -142,9 +142,10 @@ class AudioManager {
             recorder = Recorder(type: .av)
             player = Player(type: .av)
             analyzer = Analyzer()
+    
+            AudioKit.output = AKMixer([tuner.output, /*recorder.output,*/ player.output, analyzer.output])
         }
         
-        AudioKit.output = AKMixer([tuner.output, /*recorder.output,*/ player.output, analyzer.output])
         
         let dispatchQueue = DispatchQueue(label: "com.app.queue")
         dispatchQueue.sync {
