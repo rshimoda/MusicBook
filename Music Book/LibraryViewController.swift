@@ -12,9 +12,11 @@ import DZNEmptyDataSet
 import Sugar
 import ChameleonFramework
 
-class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, UITextFieldDelegate, PlayerDelegate, EZAudioPlayerDelegate {
+class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, UITextFieldDelegate, PlayerDelegate {
     
     @IBOutlet weak var tableView:   UITableView!
+    
+    var progressTimer: Timer?
     
     let audioManager =              AudioManager.shared
     var selectedRow:                IndexPath? {
@@ -95,8 +97,13 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
                 sender.setImage(UIImage(named: "Pause"), for: .normal)
                 
                 if audioManager.state == .ready {
-                    let tape = DataStorage.audios[selectedIndex]
+                    let tape = DataStorage.audios[selectedIndex].audioFile
                     audioManager.player.play(tape: tape)
+                    
+                    let cell = self.tableView.cellForRow(at: self.selectedRow!) as! RecordingTableViewCell
+                    UIView.animate(withDuration: 0.1, animations: {
+                        cell.playbackProgressView.transform = CGAffineTransform(translationX: -cell.sonogram.frame.size.width, y: 0)
+                    })
                 } else {
                     audioManager.player.resumePlaying()
                 }
@@ -114,14 +121,26 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     // MARK: - Player Delegate
     
+    func playerDidCompleteTrack(for percent: Double) {
+        let cell = tableView.cellForRow(at: selectedRow!) as! RecordingTableViewCell
+        UIView.animate(withDuration: 0.1, animations: {
+            cell.playbackProgressView.transform = CGAffineTransform(translationX: (cell.sonogram.frame.size.width * CGFloat(percent) / 100) - cell.sonogram.frame.size.width, y: 0)
+        })
+    }
+    
     func playerDidFinishPlaying() {
         audioManager.player.stopPlaying()
+        let cell = tableView.cellForRow(at: selectedRow!) as! RecordingTableViewCell
+        cell.playbackProgressView.isHidden = true
     }
     
     // MARK: - Text Fiel Delegate
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        if let text = textField.text {
+            DataStorage.audios[selectedRow!.row].name = text
+        }
         return true
     }
     
@@ -154,21 +173,26 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Record Cell", for: indexPath) as! RecordingTableViewCell
         
-        cell.title.text = "La meva idea \(indexPath.row + 1)"
+        cell.title.text = DataStorage.audios[indexPath.row].name
         cell.title.delegate = self
         
-        let duration = Int(DataStorage.audios[indexPath.row].duration)
+        let duration = Int(DataStorage.audios[indexPath.row].audioFile.duration)
         cell.duration.text = String(format: "%d:%.02d", duration / 60, duration % 60)
-        cell.audioFile = DataStorage.audios[indexPath.row]
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        cell.date.text = dateFormatter.string(from: DataStorage.audios[indexPath.row].creationDate)
+        
 
         cell.sonogram.backgroundColor = .clear
         cell.sonogram.color = .flatWhite
+        cell.sonogram.gain = 1.5
         cell.sonogram.shouldOptimizeForRealtimePlot = false
         cell.sonogram.plotType = .buffer // addDurationOfFileWith(url: DataStorage.audios[indexPath.row].url)
         cell.sonogram.shouldFill = true
         cell.sonogram.shouldMirror = true
         
-        if let audioFile = EZAudioFile(url: cell.audioFile.url), let waweFormData = audioFile.getWaveformData() {
+        if let audioFile = EZAudioFile(url: DataStorage.audios[indexPath.row].audioFile.url), let waweFormData = audioFile.getWaveformData() {
             cell.sonogram.updateBuffer(waweFormData.buffers[0], withBufferSize: waweFormData.bufferSize)
         }
         
@@ -208,7 +232,7 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
             if segueName == "Open Track" {
                 if let destination = (segue.destination as! UINavigationController).viewControllers.first as? TrackViewController {
                     destination.trackTitle = (tableView.cellForRow(at: selectedRow!) as! RecordingTableViewCell).title.text ?? " "
-                    destination.audioFile = DataStorage.audios[selectedRow!.row]
+                    destination.recording = DataStorage.audios[selectedRow!.row]
                     destination.audioFileIndex = selectedRow!.row
                     
                     destination.navigationController?.navigationBar.backgroundColor = UIColor.flatNavyBlueDark

@@ -15,6 +15,10 @@
 		492924EB209A6652006C58DD /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492924E8209A6652006C58DD /* Note.swift */; };
 		492924EC209A6652006C58DD /* Pitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492924E9209A6652006C58DD /* Pitch.swift */; };
 		492924EF209B0AED006C58DD /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492924EE209B0AED006C58DD /* LibraryViewController.swift */; };
+		49738EF720D1D2CA0063E1CD /* Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49738EF620D1D2CA0063E1CD /* Recording.swift */; };
+		49738EF920D31B070063E1CD /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49738EF820D31B070063E1CD /* EditViewController.swift */; };
+		49738EFB20D31B1B0063E1CD /* TrimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49738EFA20D31B1B0063E1CD /* TrimViewController.swift */; };
+		49738EFD20D31B2E0063E1CD /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49738EFC20D31B2E0063E1CD /* NotesViewController.swift */; };
 		49837013208F7ABE00D5F10D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49837012208F7ABE00D5F10D /* AppDelegate.swift */; };
 		49837015208F7ABE00D5F10D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49837014208F7ABE00D5F10D /* ViewController.swift */; };
 		49837018208F7ABE00D5F10D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49837016208F7ABE00D5F10D /* Main.storyboard */; };
@@ -125,6 +129,10 @@
 		492924E9209A6652006C58DD /* Pitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pitch.swift; sourceTree = "<group>"; };
 		492924EE209B0AED006C58DD /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		492924F0209B0B5C006C58DD /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
+		49738EF620D1D2CA0063E1CD /* Recording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
+		49738EF820D31B070063E1CD /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		49738EFA20D31B1B0063E1CD /* TrimViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimViewController.swift; sourceTree = "<group>"; };
+		49738EFC20D31B2E0063E1CD /* NotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
 		4983700F208F7ABE00D5F10D /* Music Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Music Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49837012208F7ABE00D5F10D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49837014208F7ABE00D5F10D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -281,6 +289,9 @@
 				492924EE209B0AED006C58DD /* LibraryViewController.swift */,
 				49F59C1E209B29D900D35875 /* RecordingTableViewCell.swift */,
 				491DD95720BC32A100CF7318 /* TrackViewController.swift */,
+				49738EF820D31B070063E1CD /* EditViewController.swift */,
+				49738EFA20D31B1B0063E1CD /* TrimViewController.swift */,
+				49738EFC20D31B2E0063E1CD /* NotesViewController.swift */,
 				491362A120CE98AC0005D0CB /* Audio Manager */,
 				498C35B220BD734B005FCC6D /* Helpers */,
 				492924ED209A665B006C58DD /* Tuner */,
@@ -317,6 +328,7 @@
 			children = (
 				49837012208F7ABE00D5F10D /* AppDelegate.swift */,
 				492924F0209B0B5C006C58DD /* DataStorage.swift */,
+				49738EF620D1D2CA0063E1CD /* Recording.swift */,
 				491DD95520BC161100CF7318 /* Extentions.swift */,
 				4983701B208F7AC000D5F10D /* LaunchScreen.storyboard */,
 				49F59C1B209B1B9C00D35875 /* Music Book-Bridging-Header.h */,
@@ -731,6 +743,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49738EF920D31B070063E1CD /* EditViewController.swift in Sources */,
 				49DE34FC20B7666000022597 /* AudioManager.swift in Sources */,
 				49837015208F7ABE00D5F10D /* ViewController.swift in Sources */,
 				492924EF209B0AED006C58DD /* LibraryViewController.swift in Sources */,
@@ -738,10 +751,13 @@
 				49961BED20B3765000368F1B /* MenuNavigationViewController.swift in Sources */,
 				492924EC209A6652006C58DD /* Pitch.swift in Sources */,
 				49F823E6209A1A1800584985 /* MKGradientView.swift in Sources */,
+				49738EFB20D31B1B0063E1CD /* TrimViewController.swift in Sources */,
+				49738EF720D1D2CA0063E1CD /* Recording.swift in Sources */,
 				49961BF220B42F3100368F1B /* DataStorage.swift in Sources */,
 				49837013208F7ABE00D5F10D /* AppDelegate.swift in Sources */,
 				491DD95620BC161100CF7318 /* Extentions.swift in Sources */,
 				49961BF320B42F3300368F1B /* State.swift in Sources */,
+				49738EFD20D31B2E0063E1CD /* NotesViewController.swift in Sources */,
 				491DD95820BC32A100CF7318 /* TrackViewController.swift in Sources */,
 				49961BEB20B3760F00368F1B /* RootContainerViewController.swift in Sources */,
 				49F59C1F209B29D900D35875 /* RecordingTableViewCell.swift in Sources */,

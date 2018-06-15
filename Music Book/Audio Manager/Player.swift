@@ -13,6 +13,7 @@ import Log
 
 protocol PlayerDelegate: EZAudioPlayerDelegate, AVAudioPlayerDelegate {
     func playerDidFinishPlaying()
+    func playerDidCompleteTrack(for percent: Double)
 }
 
 class Player {
@@ -64,6 +65,19 @@ class Player {
         case .av:
             prepareAVPlayer()
             avPlayer.play()
+            
+            Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (timer) in
+                if AudioManager.shared.state == .paused {
+                    return
+                }
+                
+                guard self.avPlayer.isPlaying else {
+                    timer.invalidate()
+                    return
+                }
+                
+                self.delegate?.playerDidCompleteTrack(for: self.avPlayer.currentTime * 100 / self.avPlayer.duration)
+            }
         }
         AudioManager.shared.state = .playing
     }

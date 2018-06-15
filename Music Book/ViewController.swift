@@ -80,6 +80,7 @@ class ViewController: UIViewController, RecorderDelegate {
         plot.shouldMirror = true
         plot.color = .flatWhite
         plot.backgroundColor = .clear
+        plot.gain = 3.2
         audioPlot.addSubview(plot)
     }
     
@@ -167,7 +168,8 @@ class ViewController: UIViewController, RecorderDelegate {
         }
         
         /* Save to the Data Storage */
-        DataStorage.audios.append(audioFile)
+        let recording = Recording(name: "La meva idea \(DataStorage.audios.count)", audioFile: audioFile)
+        DataStorage.audios.append(recording)
         
         /* Segue to the library */
         performSegue(withIdentifier: "Open Library", sender: self)

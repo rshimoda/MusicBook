@@ -11,7 +11,7 @@ import AudioKit
 import AudioKitUI
 
 class TrackViewController: UIViewController, UITextFieldDelegate, PlayerDelegate, AnalyzerDelegate {
-
+    
     // MARK: - Outlets
     
     @IBOutlet weak var titleLabel: UITextField!
@@ -20,11 +20,14 @@ class TrackViewController: UIViewController, UITextFieldDelegate, PlayerDelegate
     @IBOutlet weak var sonogram: EZAudioPlot!
     @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var notesTextView: UITextView!
+    @IBOutlet weak var notesCollectionView: UICollectionView!
+    
+    @IBOutlet weak var editButton: UIBarButtonItem!
     
     // MARK: - Interanl Variables
         
     let audioManager = AudioManager.shared
-    var audioFile: AKAudioFile!
+    var recording: Recording!
     var audioFileIndex: Int!
     var trackTitle: String?
     
@@ -47,7 +50,7 @@ class TrackViewController: UIViewController, UITextFieldDelegate, PlayerDelegate
         sonogram.shouldFill = true
         sonogram.shouldMirror = true
         
-        if let audioFile = EZAudioFile(url: audioFile.url), let waweFormData = audioFile.getWaveformData() {
+        if let audioFile = EZAudioFile(url: recording.audioFile.url), let waweFormData = audioFile.getWaveformData() {
             sonogram.updateBuffer(waweFormData.buffers[0], withBufferSize: waweFormData.bufferSize)
         }
         
@@ -58,7 +61,7 @@ class TrackViewController: UIViewController, UITextFieldDelegate, PlayerDelegate
         audioManager.player.delegate = self
         audioManager.analyzer.delegate = self
         
-        audioManager.analyzer.analyze(audio: audioFile)
+        audioManager.analyzer.analyze(audio: recording.audioFile)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,9 +85,16 @@ class TrackViewController: UIViewController, UITextFieldDelegate, PlayerDelegate
     
     func analyzerDidFinishAnalyzing(track: AKAudioFile, result: [(Pitch, Double)], discreteFactor: Double) {
         loadingView.isHidden = true
-        for tick in result {
-            notesTextView.text.append("\(tick.0.description) \n")
-        }
+        editButton.isEnabled = true
+        
+        DataStorage.audios[audioFileIndex].notes = result.map({$0.0})
+//        recording.notes = DataStorage.audios[audioFileIndex].notes
+        
+        notesCollectionView.reloadData()
+        
+//        for tick in result {
+//            notesTextView.text.append("\(tick.0.description) \n")
+//        }
     }
     
     // MARK: - Player Delegate
@@ -93,7 +103,7 @@ class TrackViewController: UIViewController, UITextFieldDelegate, PlayerDelegate
         
     }
     
-    func audioPlayer(_ audioPlayer: EZAudioPlayer!, reachedEndOf audioFile: EZAudioFile!) {
+    func playerDidCompleteTrack(for percent: Double) {
         
     }
     
@@ -117,7 +127,7 @@ class TrackViewController: UIViewController, UITextFieldDelegate, PlayerDelegate
             audioManager.player.stopPlaying()
         } else {
             playButton.image = UIImage(named: "Pause")
-            audioManager.player.play(tape: audioFile)
+            audioManager.player.play(tape: recording.audioFile)
         }
     }
     
@@ -133,11 +143,53 @@ class TrackViewController: UIViewController, UITextFieldDelegate, PlayerDelegate
     }
     
     @IBAction func exportTrack(_ sender: Any) {
+        let text = recording.name
+        let audioFile = recording.audioFile
+        let itemsToShare = [text, audioFile] as [Any]
+        
+        let activityViewController = UIActivityViewController(activityItems: itemsToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        
+        present(activityViewController, animated: true, completion: nil)
     }
     
     // MARK: - Navigation
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "Open Editor":
+            ((segue.destination as! UINavigationController).viewControllers.first! as! EditViewController).recording = recording
+        default:
+            return
+        }
+    }
+    
     @IBAction func dismiss(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension TrackViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard recording.notes != nil else {
+            return 0
+        }
+        
+        return recording.notes.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Note Cell", for: indexPath)
+        if indexPath.row == 0 {
+            (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "Treble Clef")
+        } else {
+            if let image = UIImage(named: "\(recording.notes[indexPath.row]!.note)") {
+                (cell.viewWithTag(1) as! UIImageView).image = image
+                (cell.viewWithTag(2) as! UILabel).text = recording.notes[indexPath.row]?.note.description
+            } else {
+                (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "Lines")
+            }
+        }
+        return cell
     }
 }

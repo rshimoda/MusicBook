@@ -11,15 +11,16 @@ import AudioKitUI
 
 class RecordingTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var title: UITextField!
-    @IBOutlet weak var duration: UILabel!
-    @IBOutlet weak var date: UILabel!
-    @IBOutlet weak var playButton: UIButton!
-    @IBOutlet weak var sonogram: EZAudioPlot!
+    @IBOutlet weak var title:                   UITextField!
+    @IBOutlet weak var duration:                UILabel!
+    @IBOutlet weak var date:                    UILabel!
+    @IBOutlet weak var playButton:              UIButton!
+    @IBOutlet weak var sonogram:                EZAudioPlot!
+    @IBOutlet weak var playbackProgressView:    UIView!
     
     
-    @IBOutlet weak var topView: UIView!
-    @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var topView:                 UIView!
+    @IBOutlet weak var bottomView:              UIView!
     
     var isExpanded = false {
         didSet {
@@ -28,7 +29,7 @@ class RecordingTableViewCell: UITableViewCell {
         }
     }
     
-    var audioFile: AKAudioFile!
+//    var audioFile:                              AKAudioFile!
     
     override func awakeFromNib() {
         super.awakeFromNib()
