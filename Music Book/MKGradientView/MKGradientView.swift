@@ -76,10 +76,10 @@ open class MKGradientView: UIView {
         }
     }
     
-    
     override open class var layerClass : AnyClass {
         return MKGradientLayer.self
     }
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)

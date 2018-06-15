@@ -90,7 +90,6 @@ open class MKGradientGenerator {
             }
         }
         
-        
         switch gradientType {
         case .linear:
             let g0 = startPoints[0] ?? CGPoint(x: 0.5, y: 0.0)
